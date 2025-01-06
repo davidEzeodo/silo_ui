@@ -4,14 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser, faBell, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import { EventEmitter } from "events";
 import SidePanel from "./SidePanel";
-import { listeners } from "process";
 
 const eventEmitter = new EventEmitter();
 
 export function TopNav() {
   const [isSidebarPressed, setIsSidebarPressed] = useState(false);
 
-  const handleTouch = () => { 
+  const toggleSidePanel = () => { 
     eventEmitter.emit("tap");
   }
 
@@ -30,32 +29,32 @@ export function TopNav() {
     return(
         <>
             <View style={styles.topNav}>
-                <TouchableOpacity onPress={handleTouch} style={styles.menuBarIconContainer}>
-                    <FontAwesomeIcon icon={faBars} size={20} color={"white"}/>
+                <TouchableOpacity onPress={toggleSidePanel} style={styles.menuBarIconContainer}>
+                    <FontAwesomeIcon icon={faBars} size={20} color={"#25292e"}/>
                    
                 </TouchableOpacity>
                 <View style={styles.topNavUtilityButtons}>
                     <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faSearch} size={20} color={"white"} />
+                        <FontAwesomeIcon icon={faSearch} size={20} color={"#25292e"} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faBell} size={20} color={"white"} />
+                        <FontAwesomeIcon icon={faBell} size={20} color={"#25292e"} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faUser} size={20} color={"white"} />
+                        <FontAwesomeIcon icon={faUser} size={20} color={"#25292e"} />
                     </TouchableOpacity>
                 </View>
             </View>
-            {isSidebarPressed && <SidePanel/>}         
+            {isSidebarPressed && <SidePanel onClose={toggleSidePanel}/>}         
         </>
     );
 }
 
 const styles = StyleSheet.create({
   topNav:{
-    borderWidth: 2,
-    borderColor: "white",
-    borderStyle: "solid",
+    borderBottomWidth: 2,
+    borderColor: "#25292e",
+    
     borderRadius: 20,
     width: "100%",
     height: 70,
@@ -66,18 +65,12 @@ const styles = StyleSheet.create({
     // alignItems: "center"
   },
   menuBarIconContainer:{
-    // borderWidth: 2,
-    // borderColor: "red",
-    // borderStyle: "solid",
     width: "14.5%",
     height: "100%",
     justifyContent: "center",
     alignItems: "center"
   },
   topNavUtilityButtons:{
-    // borderWidth: 2,
-    // borderColor: "red",
-    // borderStyle: "solid",
     flexDirection: "row",
     width: "50%",
     justifyContent: "flex-end",
@@ -85,9 +78,6 @@ const styles = StyleSheet.create({
     
   },
   navUtilItems:{
-    // borderWidth: 2,
-    // borderColor: "red",
-    // borderStyle: "solid",
     flex: 1,
     width: "12%",
     height: "100%",
@@ -96,7 +86,6 @@ const styles = StyleSheet.create({
   },
   textStyles: {
     color: "white",
-    
   },
   button: {
     fontSize: 20,

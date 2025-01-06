@@ -2,31 +2,31 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUserPlus, faGear, faInfoCircle, faDoorOpen, faClose } from "@fortawesome/free-solid-svg-icons";
 
-export default function Sidebar(){
+export default function Sidebar({ onClose }){
     return(
         <>
         <View style={styles.sideBarContainer}>
-            <TouchableOpacity style={styles.closeButton}>
-                <FontAwesomeIcon icon={faClose} size={30}/>
+            <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+                <FontAwesomeIcon icon={faClose} size={30} color="white"/>
             </TouchableOpacity>
             <View style={styles.channelContainer}>
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Channels</Text>
                 </View>
                 <TouchableOpacity style={styles.labelOption}>
-                    <Text>Create Channel</Text>
+                    <Text style={{color: "#FAF9F9"}}>Create Channel</Text>
                 </TouchableOpacity>
                 <View style={styles.labelOption}>
-                    <Text>All Channels</Text>
+                    <Text style={{color: "#FAF9F9", marginTop: 10}}>All Channels</Text>
                     <TouchableOpacity>
-                        <Text>...</Text>
+                        <Text style={{color: "#FAF9F9", marginTop: 5}}>...</Text>
                     </TouchableOpacity>
                 </View> 
                 <View style={styles.islandGroup}>
                     <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
-                                <FontAwesomeIcon icon={faUserPlus} size={15} color={"black"}/>
+                                <FontAwesomeIcon icon={faUserPlus} size={15} color={"#FAF9F9"}/>
                             </View>
                             <Text style={styles.islandLabelText}>Add member</Text>
                         </View>
@@ -34,7 +34,7 @@ export default function Sidebar(){
                     <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
-                                <FontAwesomeIcon icon={faGear} size={15} color={"black"}/>
+                                <FontAwesomeIcon icon={faGear} size={15} color={"#FAF9F9"}/>
                             </View>
                             <Text style={styles.islandLabelText}>Settings</Text>
                         </View>
@@ -42,7 +42,7 @@ export default function Sidebar(){
                     <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
-                                <FontAwesomeIcon icon={faInfoCircle} size={15} color={"black"}/>
+                                <FontAwesomeIcon icon={faInfoCircle} size={15} color={"#FAF9F9"}/>
                             </View>
                             <Text style={styles.islandLabelText}>Help</Text>
                         </View>
@@ -50,7 +50,7 @@ export default function Sidebar(){
                     <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
-                                <FontAwesomeIcon icon={faDoorOpen} size={15} color={"black"}/>
+                                <FontAwesomeIcon icon={faDoorOpen} size={15} color={"#FAF9F9"}/>
                             </View>
                             <Text style={styles.islandLabelText}>Log out</Text>
                         </View>
@@ -70,13 +70,13 @@ const styles = StyleSheet.create({
     sideBarContainer:{
         position: "absolute",
         top: 0,
-        left: 0,
+        left: -3,
         borderWidth: 2,
-        width: 250,
+        width: 260,
         height: "100%",
         zIndex:1000,
-        borderColor: "rgba(247, 247, 247, 10)",
-        backgroundColor: 'rgba(247, 247, 247, 10)',
+        borderColor: "#25292e",
+        backgroundColor: '#25292e',
       },
       closeButton:{
         // borderWidth: 1,
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         height: 30,
         justifyContent: "center",
         alignItems: "center",
-        margin: 20,
+        marginLeft: 20,
         marginTop:21
 
       },
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
       },
       labelContainer:{
         borderBottomWidth: 1,
+        borderColor: "#FAF9F9",
         padding: 10,
     
       },
@@ -103,12 +104,13 @@ const styles = StyleSheet.create({
       islandGroup:{
         // borderWidth: 1,
         position: "absolute",
-        top: 400,
+        top: 350,
         width:"100%"
       },
       islandLabelOptions:{
         // borderWidth: 1,
         flexDirection: "row",
+        
       },
       islandLabelIcon:{
         // borderWidth: 1,
@@ -119,9 +121,10 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         padding: 5,
         justifyContent: "center",
+        color: "#FAF9F9",
       },
       label:{
-        color: "black",
+        color: "#FAF9F9",
         fontSize: 15,
         fontWeight: 800,
       }

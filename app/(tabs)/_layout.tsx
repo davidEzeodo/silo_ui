@@ -14,9 +14,9 @@ export default function TabsLayout() {
             headerTintColor: "#fff",
             tabBarStyle: {
                 backgroundColor: "#FAF9F9",
-                borderRadius: 50,
-                marginHorizontal:10,
-                marginVertical:10,
+                // borderRadius: 50,
+                // marginHorizontal:10,
+                // marginVertical:10,
                 height: 70,
             },
             
@@ -26,8 +26,7 @@ export default function TabsLayout() {
     
 
       <Tabs.Screen name="index" options={{
-        headerTitle: "Home",
-        
+        headerTitle: "",
         tabBarIcon: ({focused, color}) => <FontAwesomeIcon icon={focused ? faHome : faHomeAlt}
         color={color}
         size={20}/>

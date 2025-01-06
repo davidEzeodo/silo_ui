@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, Button } from "react-native";
 import { TopNav } from "@/components/TopNav";
 
-export default function Index() {
+export default function Home() {
   return (
     <View style={styles.parentContainer}>
       <TopNav/>
@@ -28,16 +28,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#25292e",
+    backgroundColor: "#FAF9F9",
     // borderStyle: "solid",
     // borderColor: "red",
     // borderWidth: 2,
     flexDirection: "column"
   },
   postContainer:{
-    borderStyle: "solid",
-    borderColor: "white",
-    borderWidth: 2,
+    // borderStyle: "solid",
+    // borderColor: "white",
+    // borderWidth: 2,
     borderRadius: 20,
     position:"absolute",
     top:90,
@@ -47,14 +47,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textContainer:{
-    // borderStyle: "solid",
-    // borderColor: "blue",
-    // borderWidth: 2,
     justifyContent: "center",
     alignItems: "center",
   },
   textHeadingStyles:{
-    color: "white",
+    color: "black",
     // borderStyle: "solid",
     // borderColor: "blue",
     // borderWidth: 2,
@@ -63,7 +60,7 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   textBodyStyles: {
-    color: "white",
+    color: "black",
     // borderStyle: "solid",
     // borderColor: "blue",
     // borderWidth: 2,
