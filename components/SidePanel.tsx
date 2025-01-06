@@ -4,6 +4,7 @@ import { faUserPlus, faGear, faInfoCircle, faDoorOpen } from "@fortawesome/free-
 
 export default function Sidebar(){
     return(
+        <>
         <View style={styles.sideBarContainer}>
             <View style={styles.channelContainer}>
                 <View style={styles.labelContainer}>
@@ -57,6 +58,8 @@ export default function Sidebar(){
             </View>
               
         </View>
+        </>
+        
     );
 }
 

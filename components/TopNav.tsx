@@ -3,30 +3,29 @@ import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser, faBell, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import { EventEmitter } from "events";
-import Sidebar  from "../components/SideBar";
+import SidePanel from "./SidePanel";
+import { listeners } from "process";
+
+const eventEmitter = new EventEmitter();
 
 export function TopNav() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarPressed, setIsSidebarPressed] = useState(false);
 
-  const eventEmitter = new EventEmitter();
-  let message: string = "touched";
-  const displayMessage = () =>{
-    console.log(message)
+  const handleTouch = () => { 
+    eventEmitter.emit("tap");
   }
-  const handleTouch = () => { setIsSidebarOpen(true); displayMessage() }
-
 
   useEffect(() => {
     //step 1 register event emitter
-    const handleSidebarEvent = eventEmitter.addListener("tap", () => {
-      handleTouch();
-    })
-    //step 2 emit an event
-    eventEmitter.emit("tap", {handleSidebarEvent})
-    //step 3 respond to event
-    handleSidebarEvent.removeListener;
-    //step 4 close listener
-  }, [isSidebarOpen])
+    const handleSidebarListener = () => {
+      setIsSidebarPressed((prevState) => !prevState)
+    }
+    eventEmitter.addListener("tap", handleSidebarListener);
+    //step 2 clean up
+    return () => {
+      eventEmitter.removeListener("tap", handleSidebarListener);
+    }
+  }, [])
 
     return(
         <>
@@ -47,6 +46,7 @@ export function TopNav() {
                     </TouchableOpacity>
                 </View>
             </View>
+            {isSidebarPressed && <SidePanel/>}
         </>
     );
 }
