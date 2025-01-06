@@ -1,11 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faUserPlus, faGear, faInfoCircle, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus, faGear, faInfoCircle, faDoorOpen, faClose } from "@fortawesome/free-solid-svg-icons";
 
 export default function Sidebar(){
     return(
         <>
         <View style={styles.sideBarContainer}>
+            <TouchableOpacity style={styles.closeButton}>
+                <FontAwesomeIcon icon={faClose} size={30}/>
+            </TouchableOpacity>
             <View style={styles.channelContainer}>
                 <View style={styles.labelContainer}>
                     <Text style={styles.label}>Channels</Text>
@@ -65,11 +68,25 @@ export default function Sidebar(){
 
 const styles = StyleSheet.create({
     sideBarContainer:{
+        position: "absolute",
+        top: 0,
+        left: 0,
         borderWidth: 2,
-        // borderColor: "red",
-        // borderStyle: "solid",
         width: 250,
         height: "100%",
+        zIndex:1000,
+        borderColor: "rgba(247, 247, 247, 10)",
+        backgroundColor: 'rgba(247, 247, 247, 10)',
+      },
+      closeButton:{
+        // borderWidth: 1,
+        width: 30,
+        height: 30,
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 20,
+        marginTop:21
+
       },
       channelContainer:{
         margin: 20,
@@ -77,15 +94,17 @@ const styles = StyleSheet.create({
       labelContainer:{
         borderBottomWidth: 1,
         padding: 10,
+    
       },
       labelOption:{
         marginLeft: 10,
         paddingTop: 20,
-
       },
       islandGroup:{
-        borderWidth: 1,
-        
+        // borderWidth: 1,
+        position: "absolute",
+        top: 400,
+        width:"100%"
       },
       islandLabelOptions:{
         // borderWidth: 1,

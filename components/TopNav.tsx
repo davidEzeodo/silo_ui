@@ -46,7 +46,7 @@ export function TopNav() {
                     </TouchableOpacity>
                 </View>
             </View>
-            {isSidebarPressed && <SidePanel/>}
+            {isSidebarPressed && <SidePanel/>}         
         </>
     );
 }
