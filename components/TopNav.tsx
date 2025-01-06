@@ -1,24 +1,50 @@
-import { View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser, faBell, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
+import { EventEmitter } from "events";
+import Sidebar  from "../components/SideBar";
 
-export function TopNav(){
+export function TopNav() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const eventEmitter = new EventEmitter();
+  let message: string = "touched";
+  const displayMessage = () =>{
+    console.log(message)
+  }
+  const handleTouch = () => { setIsSidebarOpen(true); displayMessage() }
+
+
+  useEffect(() => {
+    //step 1 register event emitter
+    const handleSidebarEvent = eventEmitter.addListener("tap", () => {
+      handleTouch();
+    })
+    //step 2 emit an event
+    eventEmitter.emit("tap", {handleSidebarEvent})
+    //step 3 respond to event
+    handleSidebarEvent.removeListener;
+    //step 4 close listener
+  }, [isSidebarOpen])
+
     return(
         <>
             <View style={styles.topNav}>
-                <View style={styles.menuBarIconContainer}>
-                    <FontAwesomeIcon icon={faBars} size={20} color={"white"} />
-                </View>
+                <TouchableOpacity onPress={handleTouch} style={styles.menuBarIconContainer}>
+                    <FontAwesomeIcon icon={faBars} size={20} color={"white"}/>
+                   
+                </TouchableOpacity>
                 <View style={styles.topNavUtilityButtons}>
-                    <View style={styles.navUtilItems}>
+                    <TouchableOpacity style={styles.navUtilItems}>
                         <FontAwesomeIcon icon={faSearch} size={20} color={"white"} />
-                    </View>
-                    <View style={styles.navUtilItems}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navUtilItems}>
                         <FontAwesomeIcon icon={faBell} size={20} color={"white"} />
-                    </View>
-                    <View style={styles.navUtilItems}>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navUtilItems}>
                         <FontAwesomeIcon icon={faUser} size={20} color={"white"} />
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </>

@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUserPlus, faGear, faInfoCircle, faDoorOpen } from "@fortawesome/free-solid-svg-icons";
 
-export default function Post(){
+export default function Sidebar(){
     return(
         <View style={styles.sideBarContainer}>
             <View style={styles.channelContainer}>
@@ -19,7 +19,7 @@ export default function Post(){
                     </TouchableOpacity>
                 </View> 
                 <View style={styles.islandGroup}>
-                    <TouchableOpacity style={styles.islandlabelOption}>
+                    <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
                                 <FontAwesomeIcon icon={faUserPlus} size={15} color={"black"}/>
@@ -27,7 +27,7 @@ export default function Post(){
                             <Text style={styles.islandLabelText}>Add member</Text>
                         </View>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={styles.islandlabelOption}>
+                    <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
                                 <FontAwesomeIcon icon={faGear} size={15} color={"black"}/>
@@ -35,7 +35,7 @@ export default function Post(){
                             <Text style={styles.islandLabelText}>Settings</Text>
                         </View>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={styles.islandlabelOption}>
+                    <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
                                 <FontAwesomeIcon icon={faInfoCircle} size={15} color={"black"}/>
@@ -43,7 +43,7 @@ export default function Post(){
                             <Text style={styles.islandLabelText}>Help</Text>
                         </View>
                     </TouchableOpacity> 
-                    <TouchableOpacity style={styles.islandlabelOption}>
+                    <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
                                 <FontAwesomeIcon icon={faDoorOpen} size={15} color={"black"}/>
@@ -63,11 +63,8 @@ export default function Post(){
 const styles = StyleSheet.create({
     sideBarContainer:{
         borderWidth: 2,
-        borderColor: "rgba(0, 0, 0, 0.1)",
-        backgroundColor: 'rgba(77, 77, 77, 0.1)',
-        zIndex: 100,
-        borderEndEndRadius: 5,
-        borderTopRightRadius: 5,
+        // borderColor: "red",
+        // borderStyle: "solid",
         width: 250,
         height: "100%",
       },
@@ -81,16 +78,11 @@ const styles = StyleSheet.create({
       labelOption:{
         marginLeft: 10,
         paddingTop: 20,
-      },
-      islandlabelOption:{
-        marginLeft: 5,
-        paddingTop: 20,
-        paddingBottom: 5,
+
       },
       islandGroup:{
-        // borderWidth: 1,
-        position: "absolute",
-        top: 380,
+        borderWidth: 1,
+        
       },
       islandLabelOptions:{
         // borderWidth: 1,

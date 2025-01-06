@@ -1,8 +1,7 @@
-import TabLayout from "@/app-example/app/(tabs)/_layout";
-import BlurTabBarBackground from "@/app-example/components/ui/TabBarBackground.ios";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { LogBox } from "react-native";
+
 
 LogBox.ignoreAllLogs(true)
 
@@ -23,8 +22,6 @@ export default function RootLayout() {
         
       </Stack>
     </>
-    
-
-    
   );
 }
+

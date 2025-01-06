@@ -1,9 +1,5 @@
 import { Text, View, StyleSheet, Button } from "react-native";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { TopNav } from "@/components/TopNav";
-
-const PlaceholderImage = require("../../assets/silo_assets/silo_splash_screen.svg")
 
 export default function Index() {
   return (
