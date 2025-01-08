@@ -1,12 +1,37 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, GestureResponderEvent, Animated } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faUserPlus, faGear, faInfoCircle, faDoorOpen, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus, faGear, faInfoCircle, faDoorOpen, faClose, faHeadphones, faChartLine, faRobot } from "@fortawesome/free-solid-svg-icons";
+import React, {useRef, useEffect, useState} from "react";
 
-export default function Sidebar({ onClose }){
+type Props = {
+    closeSidePanel: () => void
+}
+
+export default function Sidebar({ closeSidePanel }: Props){
+    const slideAnimation = useRef(new Animated.Value(-260)).current;
+    const [isVisible, setIsVisible] = useState(true);
+    useEffect(() => {
+        Animated.timing(slideAnimation, {
+            toValue: 0,
+            duration: 300,
+            useNativeDriver: true,
+        }).start();
+    }, [slideAnimation]);
+    const closeSidePanelWithAnimation = () => {
+        Animated.timing(slideAnimation, {
+            toValue:-260,
+            duration:300,
+            useNativeDriver:true,
+        }).start(() => {
+            setIsVisible(false);
+            closeSidePanel();
+        });
+    };
+    if(!isVisible)return null;
     return(
-        <>
+        <Animated.View style={[styles.sideBarContainer, {transform: [{translateX: slideAnimation}] }]}>
         <View style={styles.sideBarContainer}>
-            <TouchableOpacity style={styles.closeButton} onPress={onClose}>
+            <TouchableOpacity style={styles.closeButton} onPress={closeSidePanelWithAnimation}>
                 <FontAwesomeIcon icon={faClose} size={30} color="white"/>
             </TouchableOpacity>
             <View style={styles.channelContainer}>
@@ -34,9 +59,33 @@ export default function Sidebar({ onClose }){
                     <TouchableOpacity style={styles.labelOption}>
                         <View style={styles.islandLabelOptions}>
                             <View style={styles.islandLabelIcon}>
+                                <FontAwesomeIcon icon={faHeadphones} size={15} color={"#FAF9F9"}/>
+                            </View>
+                            <Text style={styles.islandLabelText}>Meet</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.labelOption}>
+                        <View style={styles.islandLabelOptions}>
+                            <View style={styles.islandLabelIcon}>
+                                <FontAwesomeIcon icon={faChartLine} size={15} color={"#FAF9F9"}/>
+                            </View>
+                            <Text style={styles.islandLabelText}>Track Engagement</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.labelOption}>
+                        <View style={styles.islandLabelOptions}>
+                            <View style={styles.islandLabelIcon}>
+                                <FontAwesomeIcon icon={faRobot} size={15} color={"#FAF9F9"}/>
+                            </View>
+                            <Text style={styles.islandLabelText}>Automate Workflow</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.labelOption}>
+                        <View style={styles.islandLabelOptions}>
+                            <View style={styles.islandLabelIcon}>
                                 <FontAwesomeIcon icon={faGear} size={15} color={"#FAF9F9"}/>
                             </View>
-                            <Text style={styles.islandLabelText}>Settings</Text>
+                            <Text style={styles.islandLabelText}>Account Settings</Text>
                         </View>
                     </TouchableOpacity> 
                     <TouchableOpacity style={styles.labelOption}>
@@ -55,13 +104,10 @@ export default function Sidebar({ onClose }){
                             <Text style={styles.islandLabelText}>Log out</Text>
                         </View>
                     </TouchableOpacity>
-                </View>
-                 
-                
-            </View>
-              
+                </View>           
+            </View>      
         </View>
-        </>
+        </Animated.View>
         
     );
 }
@@ -85,8 +131,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginLeft: 20,
-        marginTop:21
-
+        marginTop:15
       },
       channelContainer:{
         margin: 20,
@@ -104,7 +149,7 @@ const styles = StyleSheet.create({
       islandGroup:{
         // borderWidth: 1,
         position: "absolute",
-        top: 350,
+        top: 200,
         width:"100%"
       },
       islandLabelOptions:{

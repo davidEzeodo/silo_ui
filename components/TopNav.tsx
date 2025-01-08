@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, GestureResponderHandlers } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser, faBell, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
 import { EventEmitter } from "events";
 import SidePanel from "./SidePanel";
+
 
 const eventEmitter = new EventEmitter();
 
@@ -45,16 +46,16 @@ export function TopNav() {
                     </TouchableOpacity>
                 </View>
             </View>
-            {isSidebarPressed && <SidePanel onClose={toggleSidePanel}/>}         
+            {isSidebarPressed && <SidePanel closeSidePanel={toggleSidePanel}/>}
         </>
     );
 }
 
 const styles = StyleSheet.create({
   topNav:{
-    borderBottomWidth: 2,
-    borderColor: "#25292e",
-    
+    borderBottomWidth: 1,
+    borderColor: "#AFADA9",
+    backgroundColor: "#FFFDFA",
     borderRadius: 20,
     width: "100%",
     height: 70,

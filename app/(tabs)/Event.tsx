@@ -10,12 +10,12 @@ export default function Post(){
                   <Text 
                   style={styles.textHeadingStyles}
                   >
-                    No activities yet.
+                    No events found.
                   </Text>
                   <Text 
                   style={styles.textBodyStyles}
                   >
-                    Break the ice, make the first post.
+                    Create events that boost engagement.
                   </Text>
                 </View>
               </View>
