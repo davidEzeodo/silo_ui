@@ -31,18 +31,18 @@ export function TopNav() {
         <>
             <View style={styles.topNav}>
                 <TouchableOpacity onPress={toggleSidePanel} style={styles.menuBarIconContainer}>
-                    <FontAwesomeIcon icon={faBars} size={20} color={"#25292e"}/>
+                    <FontAwesomeIcon icon={faBars} size={20} color={"#0B2950"}/>
                    
                 </TouchableOpacity>
                 <View style={styles.topNavUtilityButtons}>
                     <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faSearch} size={20} color={"#25292e"} />
+                        <FontAwesomeIcon icon={faSearch} size={20} color={"#0B2950"} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faBell} size={20} color={"#25292e"} />
+                        <FontAwesomeIcon icon={faBell} size={20} color={"#0B2950"} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faUser} size={20} color={"#25292e"} />
+                        <FontAwesomeIcon icon={faUser} size={20} color={"#0B2950"} />
                     </TouchableOpacity>
                 </View>
             </View>
@@ -54,8 +54,8 @@ export function TopNav() {
 const styles = StyleSheet.create({
   topNav:{
     borderBottomWidth: 1,
-    borderColor: "#AFADA9",
-    backgroundColor: "#FFFDFA",
+    borderBottomColor: "#0D2A4C",
+    backgroundColor: "rgb(255, 252, 252)",
     borderRadius: 20,
     width: "100%",
     height: 70,

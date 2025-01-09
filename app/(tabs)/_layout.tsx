@@ -6,9 +6,9 @@ export default function TabsLayout() {
   return (
     <Tabs
         screenOptions={{
-            tabBarActiveTintColor: "#25292e",
+            tabBarActiveTintColor: "#0B2950",
             headerStyle:{
-              backgroundColor: "#25292e"
+              backgroundColor: "#0B2950"
             },
             headerShadowVisible: false,
             headerTitleStyle: {
@@ -46,14 +46,12 @@ export default function TabsLayout() {
         color={color}
         size={20}/>
       }}/>
-      <Tabs.Screen name="Event" options={{
+      <Tabs.Screen name="Events" options={{
         headerTitle: "Events",
         tabBarIcon: ({focused, color}) => <FontAwesomeIcon icon={focused ? faPager : faPager}
         color={color}
         size={20}/>
       }}/>
-
-      <Tabs.Screen name="not-found" options={{headerShown: false}}/>
 
     </Tabs>
    

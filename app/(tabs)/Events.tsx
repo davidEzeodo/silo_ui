@@ -10,12 +10,12 @@ export default function Post(){
                   <Text 
                   style={styles.textHeadingStyles}
                   >
-                    No events found.
+                    Create events here. 
                   </Text>
                   <Text 
                   style={styles.textBodyStyles}
                   >
-                    Create events that boost engagement.
+                    Plan, schedule and set reminders.
                   </Text>
                 </View>
               </View>
