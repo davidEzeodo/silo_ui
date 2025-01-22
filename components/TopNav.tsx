@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, TouchableOpacity, GestureResponderHandlers } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faUser, faBell, faSearch, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faBell, faSearch, faBars, faPeopleGroup, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { EventEmitter } from "events";
 import SidePanel from "./SidePanel";
 
@@ -42,6 +42,9 @@ export function TopNav() {
                         <FontAwesomeIcon icon={faBell} size={20} color={"#0B2950"} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.navUtilItems}>
+                        <FontAwesomeIcon icon={faPeopleGroup} size={24} color={"#0B2950"} style={styles.navUtilItem}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.navUtilItems}>
                         <FontAwesomeIcon icon={faUser} size={20} color={"#0B2950"} />
                     </TouchableOpacity>
                 </View>
@@ -75,8 +78,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "50%",
     justifyContent: "flex-end",
-    
-    
+
   },
   navUtilItems:{
     flex: 1,
@@ -84,6 +86,16 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     alignItems: "center",
+
+  },
+  navUtilItem:{
+    flex: 1,
+    width: "12%",
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 2,
+    borderRadius: 5
   },
   textStyles: {
     color: "white",

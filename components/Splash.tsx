@@ -19,14 +19,11 @@ export default function Splash({ onFinish }: Props){
 
     return(
         <Animated.View style={[styles.splashScreenContainer, {opacity}]}>
-            {/* <Image
-            source={require("")}
+            <Image
+            source={require("../assets/images/icon.png")}
             style={styles.image}
             resizeMode="contain"
-            /> */}
-            <View>
-                <Text>Hi</Text>
-            </View>
+            />
         </Animated.View>
     )
 };
