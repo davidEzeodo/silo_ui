@@ -61,7 +61,7 @@ export default function OtpValidation() {
         }
         try {
             console.log(requestData);
-            const response = await fetch("http://192.168.45.33:8080/verifyOtp", {
+            const response = await fetch("http://192.168.191.33:8080/verifyOtp", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

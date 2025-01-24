@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"; 
-import { faComment, faCommentAlt, faHome, faHomeAlt, faBullhorn, faPager} from "@fortawesome/free-solid-svg-icons";
+import { faComment, faCommentAlt, faHome, faHomeAlt, faBullhorn, faPager, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 
 export default function TabsLayout() {
   return (
@@ -49,6 +49,12 @@ export default function TabsLayout() {
       <Tabs.Screen name="Events" options={{
         headerTitle: "Events",
         tabBarIcon: ({focused, color}) => <FontAwesomeIcon icon={focused ? faPager : faPager}
+        color={color}
+        size={20}/>
+      }}/>
+      <Tabs.Screen name="Profile" options={{
+        headerTitle: "Profile",
+        tabBarIcon: ({focused, color}) => <FontAwesomeIcon icon={focused ? faUserCircle : faUserCircle}
         color={color}
         size={20}/>
       }}/>

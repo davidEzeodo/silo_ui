@@ -1,30 +1,36 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
-
+import { useFonts } from "expo-font";
 
 export default function ProfileBadge(){
+  const [fontsLoaded] = useFonts({
+      "RobotoMono-Regular": require("@/assets/fonts/RobotoMono-Regular.ttf"),
+      "Lato-Regular": require("@/assets/fonts/Lato-Regular.ttf")
+    });
     return(
+      fontsLoaded ?(
         <TouchableOpacity style={styles.profileBadgeContainer}>
-        <View style={styles.profilePicture}>
-            <FontAwesomeIcon icon={faUserCircle} size={50} color="#113B6F"/>
-        </View>
+          <View style={styles.profilePicture}>
+              <FontAwesomeIcon icon={faUserCircle} size={50} color="#113B6F"/>
+          </View>
 
-        <View style={styles.profileDetailsContainer}>
-            <View style={styles.userNameContainer}>
-                <Text style={styles.userNameText}>
-                    Mary Jane
-                </Text>
-            </View>
-            <View style={styles.userDescriptionContainer}>
-                <Text>
-                    Founder of  
-                    <Text style={styles.highlight}> Ingressive For Good
-                    </Text>...
-                </Text>
-            </View>
-        </View>
+          <View style={styles.profileDetailsContainer}>
+              <View style={styles.userNameContainer}>
+                  <Text style={styles.userNameText}>
+                      Mary Jane
+                  </Text>
+              </View>
+              <View style={styles.userDescriptionContainer}>
+                  <Text>
+                      Founder of  
+                      <Text style={styles.highlight}> Ingressive For Good
+                      </Text>...
+                  </Text>
+              </View>
+          </View>
         </TouchableOpacity>
+      ): null 
     )
 }
 
@@ -65,14 +71,16 @@ const styles = StyleSheet.create({
         paddingLeft:5,
       },
       userNameText:{
-        fontWeight:500
+        fontWeight:500,
+        fontFamily: "Lato-Regular",        
       },
       userDescriptionContainer:{
         // borderWidth: 1,
         height:"50%",
         paddingLeft:5,
+        fontFamily: "Lato-Regular",
       },
       highlight:{
-        fontWeight:500
+        fontFamily: "Lato-Regular",
       },
 })

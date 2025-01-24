@@ -77,7 +77,7 @@ export default function EmailAuthentication() {
             const requestData = {
                 "email": email
             }
-            const response = await fetch("http://192.168.45.33:8080/sendOtp", {
+            const response = await fetch("http://192.168.191.33:8080/sendOtp", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(requestData),
@@ -113,8 +113,6 @@ export default function EmailAuthentication() {
         } catch (error: any) {
             console.log(error.message)
             console.log(error);
-            // const err = await error.json();
-            // console.log(err)
             setLoading(false); 
             console.error("Error fetching OTP:", error.message);
             setModalContent(error.message || "An unexpected error occurred.");

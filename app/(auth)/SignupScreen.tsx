@@ -60,6 +60,7 @@ export default function CreateAccount(){
         }
     
         if (!password.trim() || !confirmPassword.trim()) {
+            
             setModalContent("Please fill in both password fields.");
             setIsResponseGood(false);
             setModalVisible(true);
@@ -67,6 +68,7 @@ export default function CreateAccount(){
         }
     
         if (password !== confirmPassword) {
+            console.log(password, " ", confirmPassword)
             setModalContent("Passwords do not match.");
             setIsResponseGood(false);
             setModalVisible(true);
@@ -84,7 +86,7 @@ export default function CreateAccount(){
     
         try {
             // Make API call
-            const response = await fetch("http://192.168.45.33:8080/createUser", {
+            const response = await fetch("http://192.168.191.33:8080/createUser", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers:{
@@ -107,7 +109,7 @@ export default function CreateAccount(){
             });
             return;
         }
-
+            
             const responseData = await response.json();
             setIsResponseGood(true);
             console.log("Account created successfully: ", responseData);
@@ -135,7 +137,7 @@ export default function CreateAccount(){
     const handleCloseModal = () =>{
         if(isResponseGood){
             setModalVisible(false);
-            router.push("/CreateCommunityProfile");
+            router.push("/LoginScreen");
         }else{
             setModalVisible(false);
         }   

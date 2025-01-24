@@ -9,7 +9,8 @@ export default function AuthLayout(){
           },
           headerTintColor: "#fff",
     }}>
-        <Stack.Screen name="EmailAuthentication" options={{ headerTitle: "", 
+        <Stack.Screen name="EmailAuthentication" 
+        options={{ headerTitle: "", 
         headerLeft: () => null, 
         gestureEnabled: false 
         }} />

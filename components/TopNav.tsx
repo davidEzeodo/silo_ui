@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser, faBell, faSearch, faBars, faPeopleGroup, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { EventEmitter } from "events";
 import SidePanel from "./SidePanel";
+import { router } from "expo-router";
 
 
 const eventEmitter = new EventEmitter();
@@ -27,6 +28,10 @@ export function TopNav() {
     }
   }, [])
 
+  const handleCommunityButton =()=>{
+    router.push("/(community)")
+  }
+
     return(
         <>
             <View style={styles.topNav}>
@@ -41,12 +46,10 @@ export function TopNav() {
                     <TouchableOpacity style={styles.navUtilItems}>
                         <FontAwesomeIcon icon={faBell} size={20} color={"#0B2950"} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faPeopleGroup} size={24} color={"#0B2950"} style={styles.navUtilItem}/>
+                    <TouchableOpacity style={styles.navUtilItems} onPress={handleCommunityButton}>
+                        <FontAwesomeIcon icon={faPeopleGroup} size={25} color={"#0B2950"}/>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.navUtilItems}>
-                        <FontAwesomeIcon icon={faUser} size={20} color={"#0B2950"} />
-                    </TouchableOpacity>
+                    
                 </View>
             </View>
             {isSidebarPressed && <SidePanel closeSidePanel={toggleSidePanel}/>}

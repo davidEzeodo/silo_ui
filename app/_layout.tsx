@@ -53,10 +53,12 @@ export default function RootLayout() {
   return (
     <>
     <StatusBar style="light"/>
-      <Stack initialRouteName={isNewUser ? "(welcome)" : "(auth)"}>
+      <Stack 
+      initialRouteName={isNewUser ? "(welcome)" : "(auth)"}>
         <Stack.Screen name="(welcome)" options={{ headerTitle: ""}}/>
         <Stack.Screen name="(auth)" options={{ headerTitle: "Login", headerShown: false }}/>
         <Stack.Screen name="(tabs)" options={{headerTitle: "Home", headerShown: false}}/>
+        <Stack.Screen name="(community)" options={{headerTitle: "", headerShown: false}} />
         <Stack.Screen name="+not-found" options={{headerShown: false}}/>
       </Stack>
     </>

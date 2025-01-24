@@ -3,32 +3,32 @@ import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 export default function UserCommunitySummary(){
     return(
         <View style={styles.communitySummaryContainer}>
-                    <TouchableOpacity style={styles.communitiesUnderMgt}>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.textStyle}>
-                                Communities Under Management 
-                            </Text>
-                            <View style={styles.numberContainer}>
-                                <Text style={styles.numberValue}>
-                                    0
-                                </Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-        
-                    <TouchableOpacity style={styles.communityMemberships}>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.textStyle}>
-                                Memberships
-                            </Text>
-                            <View style={styles.numberContainer}>
-                                <Text style={styles.numberValue}>
-                                    0
-                                </Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
-              </View>
+        <TouchableOpacity style={styles.communitiesUnderMgt}>
+            <View style={styles.textContainer}>
+                <Text style={styles.textStyle}>
+                    Communities Under Management 
+                </Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.numberValue}>
+                        0
+                    </Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.communityMemberships}>
+            <View style={styles.textContainer}>
+                <Text style={styles.textStyle}>
+                    Memberships
+                </Text>
+                <View style={styles.numberContainer}>
+                    <Text style={styles.numberValue}>
+                        0
+                    </Text>
+                </View>
+            </View>
+        </TouchableOpacity>
+      </View>
     )
 }
 const styles = StyleSheet.create({
@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
         borderRadius:20,
         justifyContent: "center",
         backgroundColor: "rgb(255, 252, 252)",
-        boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"
-    
+        boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
       },
       communityMemberships:{
         borderWidth:1,
@@ -61,7 +60,8 @@ const styles = StyleSheet.create({
         borderRadius:20,
         justifyContent: "center",
         backgroundColor: "rgb(255, 252, 252)",
-        boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"
+        boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px",
+        
       },
       textContainer:{
         borderBottomWidth:1,
@@ -69,12 +69,14 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 40,
         position: "absolute",
-        top: 6
+        top: 6,
+        
       },
       textStyle:{
         fontSize: 11,
         fontWeight: 500,
-        paddingLeft: 10
+        paddingLeft: 10,
+        // fontFamily: "Lato-Bold",
       },
       numberContainer:{
         borderLeftWidth:1,

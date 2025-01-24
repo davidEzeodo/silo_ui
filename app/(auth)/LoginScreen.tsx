@@ -1,4 +1,14 @@
-import {View, Text, StyleSheet, ScrollView, Keyboard, SafeAreaView, TextInput, TouchableOpacity} from "react-native";
+import {
+    View, 
+    Text, 
+    StyleSheet, 
+    ScrollView, 
+    Keyboard, 
+    SafeAreaView, 
+    TextInput, 
+    TouchableOpacity,
+    ActivityIndicator
+} from "react-native";
 import {useHeaderHeight} from "@react-navigation/elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { router } from "expo-router";
@@ -15,6 +25,7 @@ export default function LoginScreen(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isFocused, setIsFocused] =useState(false);
+    const [isLoading, setLoading] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const [modalContent, setModalContent] = useState("");
     const [isResponseGood, setIsResponseGood] = useState(false);
@@ -54,36 +65,42 @@ export default function LoginScreen(){
             setModalVisible(true);
             return;
         }
-        const requestData = {
-            "email": email,
-            "password": password,
-        }
+        
+        console.log("Request data object created")
+        setLoading(true);
         try {
+            const requestData = {
+                "email": email,
+                "password": password,
+            }
             console.log(requestData);
-            const response = await fetch("http://192.168.45.33:8080/logIn", {
+            const response = await fetch("http://localhost:8080/logIn", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(requestData)
             });
-    
+            console.log("Fetch has been executed");
             const responseData = await response.json();
     
             if (response.ok) {
                 console.log(responseData)
                 setIsResponseGood(true);
                 setToken(responseData.token);
+                setLoading(false);
                 setModalProps({
                     isError: false,
                     headerText: "Success",
                     icon: faCheckCircle,
                     color: "green",
                 });
+                console.log(response)
                 setModalContent("Login Successful.");
             } else if(!response.ok){
                 // const errorData = await response.json();
                     console.error("Error response: ", responseData.data);
+                    setLoading(false);
                     setModalContent(responseData.data);
                     setModalVisible(true);
                     setModalProps({
@@ -174,6 +191,20 @@ export default function LoginScreen(){
                 </View>
                 
             </ScrollView>
+            {/* Loading Modal */}
+            {isLoading && (
+                <CustomModal
+                    visible={isLoading}
+                    onClose={() => setLoading(false)} // Optional close behavior
+                    headerText="Loading"
+                    content={
+                        <View style={styles.loadingContainer}>
+                            <ActivityIndicator size="large" color="#00BFFF" />
+                            <Text style={styles.loadingText}>Processing...</Text>
+                        </View>
+                    }
+                />
+            )}
             <CustomModal
                 visible={isModalVisible}
                 onClose={handleCloseModal}
@@ -193,8 +224,6 @@ export default function LoginScreen(){
                 }
             />
         </SafeAreaView>
-        
-        
     )
 };
 
@@ -245,6 +274,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         padding: 5,
         backgroundColor: "rgb(3, 38, 85)",
+    },
+    loadingContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    loadingText: {
+        marginTop: 16,
+        fontFamily: "Lato-Regular",
     },
     modalContent: {
         alignItems: "center",
