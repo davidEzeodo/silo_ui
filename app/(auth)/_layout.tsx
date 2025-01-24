@@ -27,10 +27,6 @@ export default function AuthLayout(){
         gestureEnabled: false 
         }} />
         <Stack.Screen name="Demo" options={{ headerTitle: ""}} />
-        <Stack.Screen name="CreateCommunityProfile"options={{ headerTitle: "", 
-        headerLeft: () => null, 
-        gestureEnabled: false 
-        }} />
     </Stack> 
     );
 }

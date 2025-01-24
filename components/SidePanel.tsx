@@ -130,26 +130,15 @@ export default function SidePanel({ closeSidePanel }: Props) {
         transparent={true}
         animationType="slide"
         onRequestClose={() => setIsAddMemberModalVisible(false)}
+        // propagateSwipe={true}
       >
         
         <InviteMemberModal
           isVisible={isAddMemberModalVisible}
           onClose={() => setIsAddMemberModalVisible(false)}
           title="Invite Member"
-          onProceed={() => console.log("Proceed clicked")}
-        >
-          <TextInput
-          onChangeText={setEmail}
-          placeholder={"Email"}
-          value={email}
-          style={[
-              isFocused && styles.FirstNameFieldFocused,
-          ]}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          />
-          
-        </InviteMemberModal>
+          onProceed={(email) => console.log("Email entered:", email)} // Handle email here
+        />
       </Modal>
     </>
   );

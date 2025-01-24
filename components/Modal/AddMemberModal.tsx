@@ -1,148 +1,147 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  TouchableWithoutFeedback,
-  TextInput
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, TextInput } from "react-native";
 import Modal from "react-native-modal";
+import { useFonts } from "expo-font";
 
 const { width } = Dimensions.get("window");
 
 type InviteMemberModalProps = {
-    isVisible: boolean;
-    onClose: () => void;
-    title: string;
-    children: React.ReactNode;
-    onProceed?: () => void;
-}
+  isVisible: boolean;
+  onClose: () => void;
+  title: string;
+  onProceed?: (email: string) => void; // Pass the entered email back to parent
+};
 
-const InviteMemberModal: React.FC<InviteMemberModalProps> =({
-    isVisible,
-    onClose,
-    title,
-    children,
-    onProceed,
+const InviteMemberModal: React.FC<InviteMemberModalProps> = ({
+  isVisible,
+  onClose,
+  title,
+  onProceed,
 }) => {
-    const [email, setEmail] = useState("");
-    return (
+  const [email, setEmail] = useState("");
+  const [fontsLoaded] = useFonts({
+      "RobotoMono-Regular": require("@/assets/fonts/RobotoMono-Regular.ttf"),
+      "Lato-Regular": require("@/assets/fonts/Lato-Regular.ttf"),
+    });
+
+  const handleProceed = () => {
+    if (onProceed) {
+      onProceed(email); // Pass email back to parent when 'Proceed' is pressed
+    }
+    setEmail(""); // Reset email input
+    onClose(); // Close modal
+  };
+
+  return (
+    fontsLoaded ? (
         <Modal
         isVisible={isVisible}
         onBackdropPress={onClose}
         backdropOpacity={0.5}
         animationIn="slideInUp"
+        animationOut="slideOutDown"
         style={styles.modalContainer}
-
+        propagateSwipe={true}
         >
-            <TouchableWithoutFeedback>
-                <>
-                <View style={styles.modalContent}>
-                    {/* Header */}
-                    <View style={styles.header}>
-                        <Text style={styles.title}>{title}</Text>
-                        <TouchableOpacity onPress={onClose}>
-                            <Text style={styles.closeButton}>✕</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    {/* Body */}
-                    <View style={styles.body}>{children}</View>
-
-                    {/* Footer */}
-                    {onProceed && (
-                        <TouchableOpacity style={styles.proceedButton} onPress={onProceed}>
-                            <Text style={styles.proceedText}>Send Invite</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
-                {/* <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    placeholder="Email"
-                    placeholderTextColor="#ccc"
-                    value={email}
-                /> */}
-                </>
-                
-            </TouchableWithoutFeedback>
-            
-        </Modal>
-    )
-}
-const styles = StyleSheet.create({
-    modalContainer: {
-        justifyContent: "flex-end",
-        margin: 0,
-        // borderWidth: 9,
-        // borderColor: "red",
-        alignItems:"center"
-    },
-    wrapper: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      },
-    input: {
-        height: 50,
-        borderColor: "#ccc",
-        borderWidth: 1,
-        borderRadius: 8,
-        paddingHorizontal: 10,
-        marginVertical: 15,
-        backgroundColor: "#fff",
-        color: "#000",
-      },
-modalContent: {
-        backgroundColor: "white",
-        padding: 50,
-        borderTopLeftRadius: 40,
-        borderTopRightRadius: 40,
-        alignItems: "center",
-        // borderWidth: 9,
-        // borderColor: "red",
-        width: "90%",
-        height: "50%",
-        gap: 40
-    },
-    header: {
-    flexDirection: "row",
-    width: "80%",
-    marginBottom: 16,
-    alignItems:"center",
-        justifyContent: "space-between",
-        // borderWidth: 1,
-    },
-    title: {
-        fontSize: 18,
-        fontWeight: "bold",
-        // borderWidth: 1,
+        <View style={styles.modalContent}>
         
-    },
-    closeButton: {
+            <View style={styles.header}>
+            <Text style={styles.title}>{title}</Text>
+            <TouchableOpacity onPress={onClose}>
+                <Text style={styles.closeButton}>✕</Text>
+            </TouchableOpacity>
+            </View>
+
+
+            <View style={styles.body}>
+            <Text style={styles.label}>Enter Email Address</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="e.g., user@example.com"
+                placeholderTextColor="#999"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                // value={email}
+                onChangeText={(text) => setEmail(text)}
+            />
+            </View>
+
+            {/* Footer */}
+            {onProceed && (
+            <TouchableOpacity style={styles.proceedButton} onPress={handleProceed}>
+                <Text style={styles.proceedText}>Proceed</Text>
+            </TouchableOpacity>
+            )}
+        </View>
+        </Modal>
+    ) : null
+    
+  );
+};
+
+const styles = StyleSheet.create({
+  modalContainer: {
+    justifyContent: "flex-end",
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 20,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    alignItems: "center",
+  },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: 16,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    fontFamily:"Lato-Regular",
+  },
+  closeButton: {
     fontSize: 18,
     color: "gray",
-    },
-    body: {
-    width: "80%",
+  },
+  body: {
+    width: "100%",
     marginBottom: 16,
-    // borderWidth: 1,
-    },
-    proceedButton: {
-    backgroundColor: "#0B2950",
+    
+  },
+  label: {
+    fontSize: 14,
+    marginBottom: 8,
+    color: "#333",
+    fontWeight: "bold",
+    fontFamily:"Lato-Regular",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    padding: 12,
+    width: "100%",
+    fontSize: 16,
+    marginBottom: 16,
+    color: "#333",
+  },
+  proceedButton: {
+    backgroundColor: "rgb(7, 62, 134)",
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,
-    width: "80%",
+    width: width * 0.9,
     alignItems: "center",
-    },
-    proceedText: {
+  },
+  proceedText: {
     color: "white",
     fontWeight: "bold",
+    fontFamily:"Lato-Regular",
     fontSize: 16,
-    },
+  },
 });
-        
+
 export default InviteMemberModal;

@@ -2,22 +2,23 @@ import {Stack} from "expo-router";
 
 export default function CommunityLayout(){
     return(
-        <Stack
-            screenOptions={{
+        <Stack screenOptions={{
                 headerStyle:{
                     backgroundColor: "#0B2950",
                   },
-                  headerTintColor: "#fff",
-                  headerTitle: "",
+                headerTintColor: "#fff",
+                headerTitle: "",
             }}
-            
         >
-            <Stack.Screen name="CommunityScreen"
-            options={{
+            <Stack.Screen name="CommunityScreen" options={{
                 headerShown: true,
-               headerTitle: ""
-            }}
+                headerTitle: ""}}
             />
+            {/* <Stack.Screen name="CreateCommunity" options={{
+                headerShown: true,
+                headerTitle: ""}}
+            /> */}
+            
         </Stack>
     )
 }

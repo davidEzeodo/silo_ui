@@ -1,31 +1,28 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
+import {faPlusCircle, faUserCircle} from "@fortawesome/free-solid-svg-icons";
 import { useFonts } from "expo-font";
+import { router } from "expo-router";
 
 export default function ProfileBadge(){
   const [fontsLoaded] = useFonts({
       "RobotoMono-Regular": require("@/assets/fonts/RobotoMono-Regular.ttf"),
       "Lato-Regular": require("@/assets/fonts/Lato-Regular.ttf")
     });
+    const handleCreateCommunity = () => {
+      router.push("/(community)/CreateCommunity")
+    }
     return(
       fontsLoaded ?(
-        <TouchableOpacity style={styles.profileBadgeContainer}>
+        <TouchableOpacity style={styles.profileBadgeContainer} onPress={handleCreateCommunity}>
           <View style={styles.profilePicture}>
-              <FontAwesomeIcon icon={faUserCircle} size={50} color="#113B6F"/>
+              <FontAwesomeIcon icon={faPlusCircle} size={50} color="#113B6F"/>
           </View>
 
           <View style={styles.profileDetailsContainer}>
               <View style={styles.userNameContainer}>
                   <Text style={styles.userNameText}>
-                      Mary Jane
-                  </Text>
-              </View>
-              <View style={styles.userDescriptionContainer}>
-                  <Text>
-                      Founder of  
-                      <Text style={styles.highlight}> Ingressive For Good
-                      </Text>...
+                      Create community
                   </Text>
               </View>
           </View>
@@ -59,11 +56,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
       },
       profileDetailsContainer:{
-        // borderWidth: 1,
         width: "80%",
-        height:50,
+        // height:50,
         position: "absolute",
         left: 5,
+        padding: 5
       },
       userNameContainer:{
         // borderWidth: 1,
